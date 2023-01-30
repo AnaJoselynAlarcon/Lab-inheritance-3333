@@ -15,16 +15,30 @@ namespace Lab_Inheritance
             get { return rate; }
         }
 
-        public Wages(string id, string name, string address, string phone, long sin, string dob, string dept, double rate)
+        private double hours;
+        public double Hours
+        {
+            get { return hours; }
+        }
+
+
+        public Waged(string id, string name, /*string address, string phone, long sin, string dob, string dept,*/ double rate, double hours)
         {
             this.id = id;
             this.name = name;
-            this.address = address;
-            this.phone = phone;
-            this.sin = sin;
-            this.dob = dob;
-            this.dept = dept;
+            //this.address = address;
+            //this.phone = phone;
+            //this.sin = sin;
+            //this.dob = dob;
+            //this.dept = dept;
             this.rate = rate;
+            this.hours = hours;
         }
+
+        public double getPay()
+        {
+            double rate = this.rate;
+        }
+
     }
 }

@@ -35,5 +35,7 @@ namespace Lab_Inheritance
         //    this.name= name;
         //    this.salary= salary;
         //}
+        public double getPay()
+        { return salary; }
     }
 }

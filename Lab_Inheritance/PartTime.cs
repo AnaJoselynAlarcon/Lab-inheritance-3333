@@ -26,18 +26,29 @@ namespace Lab_Inheritance
         {
             get { return rate; }
         }
-
-        public PartTime(string id, string name, string address, string phone, long sin, string dob, string dept, double rate)
+        private double hours;
+        public double Hours
         {
-            this.id = id;
-            this.name = name;
-            this.address = address;
-            this.phone = phone;
-            this.sin = sin;
-            this.dob = dob;
-            this.dept = dept;
-            this.rate = rate;
+            get { return hours; }
         }
-        
+
+        //public PartTime(string id, string name, string address, string phone, long sin, string dob, string dept, double rate)
+        //{
+        //    this.id = id;
+        //    this.name = name;
+        //    this.address = address;
+        //    this.phone = phone;
+        //    this.sin = sin;
+        //    this.dob = dob;
+        //    this.dept = dept;
+        //    this.rate = rate;
+        //}
+
+        public double GetPay()
+        {
+
+        }
+
+
     }
 }
