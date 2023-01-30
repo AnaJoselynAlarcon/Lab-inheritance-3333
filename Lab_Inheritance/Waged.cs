@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_Inheritance
 {
-    internal class Wages : Employee
+    internal class Waged : Employee
     {
         private double rate;
 

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Dynamic;
+using System.Data.SqlClient;
 
 namespace Lab_Inheritance
 {
@@ -81,6 +83,8 @@ namespace Lab_Inheritance
                     //create a variabole w data type salary
                     salaried = new Salaried(id, name, address, phone, sin, dob, dept, salary);
 
+                    //--------------IDK why is 
+
 
                     // Add to employees
                     employees.Add(salaried);
@@ -93,36 +97,37 @@ namespace Lab_Inheritance
 
                 else if (firstDigitNum >=5 || firstDigitNum <=7) 
                 {
-                    //Part Time
-                    double salary = double.Parse(parts[7]);
+                    //Waged
+                    double rate = double.Parse(parts[7]);
+                    double hours = double.Parse(parts[8]);
 
-                    PartTime partime;
+                    // TODO: Create Waged instance and add it to employee list.
+                    Waged waged = new Waged(id, name, rate);
+                    employees.Add(waged);
 
-                    //PartTime instance and add it to employee list.
-                    partime = new PartTime(id,name, address, phone, rate);
+
+
+
+
+                    
                 }
                 else if (firstDigitNum >=8 && firstDigitNum <=9)
                 {
-                    //Waged
+                    //Part Time
+                    double salary = double.Parse(parts[7]);
+
+                    PartTime partTime;
+
+                    //Create variables for hours and rate
                     double rate = double.Parse(parts[7]);
+                    double hours = double.Parse(parts[8]);
 
-                    // TODO: Create Waged instance and add it to employee list.
-                    waged = new Wages(id, name, address, phone, rate);  
+                    //PartTime instance and add it to employee list.
+                    PartTime partTime = new PartTime(id, name, rate, hours);
+                    employees.Add(partTime);
                 }
 
-                /**
-                 *TODO:
-                 *-Determine average weekly pay of all employees.
-                 *-Determine highest paid waged employee.
-                 *-Determine lowest paid salaried employee.
-                 *-Determine percentage of employees that are salaried, waged, and part - time.
-                 */
-
-                // It's okay to use loop through employees multiple times.
-                foreach (Employee employee in employees)
-                {
-                    ///codigo
-                }
+                
 
 
             }
@@ -131,6 +136,76 @@ namespace Lab_Inheritance
             //string[] lines = [];
 
             //List<string> lines2 = new List<string>(lines);
+
+
+
+
+            /**
+                 *TODO:
+                 *-Determine average weekly pay of all employees.
+                 *-Determine highest paid waged employee.
+                 *-Determine lowest paid salaried employee.
+                 *-Determine percentage of employees that are salaried, waged, and part - time.
+                 */
+
+
+
+            double weeklyPaySum = 0;
+
+            // It's okay to use loop through employees multiple times.
+            foreach (Employee employee in employees)
+            {
+                if (employee is PartTime partTime)
+                {
+                    //downcast to change employee into part time
+
+                    //PartTime partTime = (PartTime)employee;
+
+                    double rate = partTime.Rate;
+                    double hours = partTime.Hours;
+
+                    double pay = rate * hours;
+                    weeklyPaySum += pay;
+                }
+                else if (employee is Waged waged)
+                {
+                    double rate = waged.Rate;
+                    double hours = waged.Hours;
+
+                    if(hours >40)
+                    {
+                        //create variable 
+                        double overtimeHours = hours - 40;
+
+                        //separate variable to calculate overtime pay
+                        double overtimePay = overtimeHours * (rate * 1.5);
+
+                        //we'll need to assume that they have 40 hours 
+                        double pay = rate * 40;
+
+                        weeklyPaySum += overtimePay + pay;
+                    }
+                    else
+                    {
+                        double pay = rate + hours;
+                        weeklyPaySum += pay;
+                    }
+                }
+                else if(employee is Salaried salaried)
+                {
+                    double pay = salaried.Salary;
+
+                    weeklyPaySum += pay;
+
+                }
+            }
+
+
+
+            //------------CALCULATE AVERAGE PAY
+            double averageWeeklyPay = weeklyPaySum / employees.Count;
+            Console.WriteLine(string.Format("Average weekly pay: {0:C2}" , averageWeeklyPay));
         }
     }
 }
+//avg 117022
