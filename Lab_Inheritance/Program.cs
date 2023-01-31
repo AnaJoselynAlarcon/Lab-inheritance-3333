@@ -46,7 +46,7 @@ namespace Lab_Inheritance
                 string name = parts[1];
                 string address = parts[2];
                 string phone = parts[3];
-                string sin = parts[4];
+                long sin = long.Parse(parts[4]);
                 string dob = parts[5];
                 string dept = parts[6];
 
@@ -104,10 +104,6 @@ namespace Lab_Inheritance
                     // TODO: Create Waged instance and add it to employee list.
                     Waged waged = new Waged(id, name, rate);
                     employees.Add(waged);
-
-
-
-
 
                     
                 }
