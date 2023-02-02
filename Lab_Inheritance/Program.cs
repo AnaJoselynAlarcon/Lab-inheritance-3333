@@ -93,10 +93,6 @@ namespace Lab_Inheritance
 
                     //we need to fill a list
                 }
-
-
-
-
                 else if (firstDigitNum >= 5 || firstDigitNum <= 7)
                 {
                     //Waged
@@ -163,29 +159,29 @@ namespace Lab_Inheritance
                 // It's okay to use loop through employees multiple times.
                 foreach (Employee employee in employees)
                 {
-                if (employee is PartTime partTime)
-                {
-                    //downcast to change employee into part time
+                    if (employee is PartTime partTime)
+                    {
+                        //downcast to change employee into part time
 
-                    //PartTime partTime = (PartTime)employee;
+                        //PartTime partTime = (PartTime)employee;
 
-                    double pay = partTime.Pay;
-                    weeklyPaySum += pay;
-                }
-                else if (employee is Waged waged)
-                {
-                    double pay = waged.Pay;
-                    weeklyPaySum += pay;
-                }
+                        double pay = partTime.Pay;
+                        weeklyPaySum += pay;
+                    }
+                    else if (employee is Waged waged)
+                    {
+                        double pay = waged.Pay;
+                        weeklyPaySum += pay;
+                    }
 
                 
-                else if(employee is Salaried salaried)
-                {
-                    double pay = salaried.Pay;
+                    else if(employee is Salaried salaried)
+                    {
+                        double pay = salaried.Pay;
 
-                    weeklyPaySum += pay;
+                        weeklyPaySum += pay;
 
-                }
+                    }
             }
             
 
@@ -219,33 +215,33 @@ namespace Lab_Inheritance
             return highestWagedEmployee;
         }
 
-        private static Waged FindLowestPaid(List<Employee> employees)
-        {
-            // Rename to lowestSalariedPay
-            // Change to highest possible value
-            double lowestWagedPay = double.MaxValue;
-            // Change type to Salaried
-            // Rename to lowestSalariedEmployee
-            Waged highestWagedEmployee = null;
+        //private static Waged FindLowestPaid(List<Employee> employees)
+        //{
+        //    // Rename to lowestSalariedPay
+        //    // Change to highest possible value
+        //    double lowestWagedPay = double.MaxValue;
+        //    // Change type to Salaried
+        //    // Rename to lowestSalariedEmployee
+        //    Waged highestWagedEmployee = null;
 
-            foreach (Employee employee in employees)
-            {
-                // Check if employee is Salaried
-                if (employee is Waged waged)
-                {
-                    double pay = waged.Pay;
+        //    foreach (Employee employee in employees)
+        //    {
+        //        // Check if employee is Salaried
+        //        if (employee is Waged waged)
+        //        {
+        //            double pay = waged.Pay;
 
-                    // Reverse to check if pay is less than lowestSalariedPay
-                    if (pay > highestWagedPay)
-                    {
-                        highestWagedPay = pay;
-                        highestWagedEmployee = waged;
-                    }
-                }
-            }
+        //            // Reverse to check if pay is less than lowestSalariedPay
+        //            if (pay > highestWagedPay)
+        //            {
+        //                highestWagedPay = pay;
+        //                highestWagedEmployee = waged;
+        //            }
+        //        }
+        //    }
 
-            return highestWagedEmployee;
-        }
+        //    return highestWagedEmployee;
+        //}
     }
 }
 //avg 117022
