@@ -1,3 +1,6 @@
 C:\Users\josel\OneDrive\Documentos\OOP2 Winter2023\Lab_Inheritance\Lab_Inheritance\obj\Debug\Lab_Inheritance.csproj.AssemblyReference.cache
 C:\Users\josel\OneDrive\Documentos\OOP2 Winter2023\Lab_Inheritance\Lab_Inheritance\obj\Debug\Lab_Inheritance.csproj.SuggestedBindingRedirects.cache
 C:\Users\josel\OneDrive\Documentos\OOP2 Winter2023\Lab_Inheritance\Lab_Inheritance\obj\Debug\Lab_Inheritance.csproj.CoreCompileInputs.cache
+C:\Users\josel\OneDrive\Documentos\OOP2 Winter2023\Lab-inheritance-3333\Lab_Inheritance\obj\Debug\Lab_Inheritance.csproj.AssemblyReference.cache
+C:\Users\josel\OneDrive\Documentos\OOP2 Winter2023\Lab-inheritance-3333\Lab_Inheritance\obj\Debug\Lab_Inheritance.csproj.SuggestedBindingRedirects.cache
+C:\Users\josel\OneDrive\Documentos\OOP2 Winter2023\Lab-inheritance-3333\Lab_Inheritance\obj\Debug\Lab_Inheritance.csproj.CoreCompileInputs.cache

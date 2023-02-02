@@ -63,21 +63,29 @@ namespace Lab_Inheritance
 
         }
 
-        public Employee(string id, string name, string address, string phone, long sin, string dob, string dept)
-        {
-            this.id = id;
-            this.name = name;
-            this.address = address;
-            this.phone = phone;
-            this.sin = sin;
-            this.dob = dob;
-            this.dept = dept;
-        }
+        //public Employee(string id, string name, string address, string phone, long sin, string dob, string dept)
+        //{
+        //    this.id = id;
+        //    this.name = name;
+        //    this.address = address;
+        //    this.phone = phone;
+        //    this.sin = sin;
+        //    this.dob = dob;
+        //    this.dept = dept;
+        //}
 
         //public override string ToString()
         //{
         //    return id;
         //}
+
+        public virtual double Pay
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
 
 

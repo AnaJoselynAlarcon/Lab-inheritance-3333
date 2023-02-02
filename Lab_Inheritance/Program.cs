@@ -28,6 +28,7 @@ namespace Lab_Inheritance
             //lines = File.ReadAllLines(path);
 
             // Create list that holds any type of Employee
+            //******notation is List<data type> name_of_list = new List<data type>();
             List<Employee> employees = new List<Employee>();
 
             // Loop through each line/row
@@ -38,6 +39,7 @@ namespace Lab_Inheritance
                 //first create a variable bc it will return a string array
                 // Extract each part/cell from line/row
                 string[] parts = line.Split(':');
+                //***** creates an array of strings called "parts" which will hold the line with the separator of :
                 //we use single quotes for a char, not double quotes
 
 
@@ -72,7 +74,7 @@ namespace Lab_Inheritance
                 //we'll need to change it first to an INT bc is a STRING NOW
                 int firstDigitNum = int.Parse(firstDigit);
 
-                if (firstDigitNum >=0 && firstDigitNum <=4)
+                if (firstDigitNum >= 0 && firstDigitNum <= 4)
                 {
                     //Salaried
                     double salary = double.Parse(parts[7]);
@@ -95,26 +97,21 @@ namespace Lab_Inheritance
 
 
 
-                else if (firstDigitNum >=5 || firstDigitNum <=7) 
+                else if (firstDigitNum >= 5 || firstDigitNum <= 7)
                 {
                     //Waged
                     double rate = double.Parse(parts[7]);
                     double hours = double.Parse(parts[8]);
 
                     // TODO: Create Waged instance and add it to employee list.
-                    Waged waged = new Waged(id, name, rate);
+                    Waged waged = new Waged(id, name, address, phone, sin, dob, dept, rate, hours);
                     employees.Add(waged);
 
-                    
+
                 }
-                else if (firstDigitNum >=8 && firstDigitNum <=9)
+                else if (firstDigitNum >= 8 && firstDigitNum <= 9)
                 {
                     //Part Time
-                    double salary = double.Parse(parts[7]);
-
-                    PartTime partTime;
-
-                    //Create variables for hours and rate
                     double rate = double.Parse(parts[7]);
                     double hours = double.Parse(parts[8]);
 
@@ -123,7 +120,7 @@ namespace Lab_Inheritance
                     employees.Add(partTime);
                 }
 
-                
+
 
 
             }
@@ -144,63 +141,110 @@ namespace Lab_Inheritance
                  *-Determine percentage of employees that are salaried, waged, and part - time.
                  */
 
+            double averageWeeklyPay = CalcAverageWeeklyPay(employees);
 
+            Console.WriteLine(string.Format("Average weekly pay: {0:C2}", averageWeeklyPay));
 
-            double weeklyPaySum = 0;
+            Employee highestPaidWagedEmployee = FindHighestPaid(employees);
 
-            // It's okay to use loop through employees multiple times.
-            foreach (Employee employee in employees)
+            double highestWagedPay = highestPaidWagedEmployee.Pay;
+
+            Console.WriteLine("Highest waged pay: " + highestWagedPay.ToString("C2"));
+            Console.WriteLine("Highest waged employee: " + highestPaidWagedEmployee.Name);
+
+        }
+
+            private static double CalcAverageWeeklyPay(List<Employee> employees)
             {
+
+            
+                double weeklyPaySum = 0;
+
+                // It's okay to use loop through employees multiple times.
+                foreach (Employee employee in employees)
+                {
                 if (employee is PartTime partTime)
                 {
                     //downcast to change employee into part time
 
                     //PartTime partTime = (PartTime)employee;
 
-                    double rate = partTime.Rate;
-                    double hours = partTime.Hours;
-
-                    double pay = rate * hours;
+                    double pay = partTime.Pay;
                     weeklyPaySum += pay;
                 }
                 else if (employee is Waged waged)
                 {
-                    double rate = waged.Rate;
-                    double hours = waged.Hours;
-
-                    if(hours >40)
-                    {
-                        //create variable 
-                        double overtimeHours = hours - 40;
-
-                        //separate variable to calculate overtime pay
-                        double overtimePay = overtimeHours * (rate * 1.5);
-
-                        //we'll need to assume that they have 40 hours 
-                        double pay = rate * 40;
-
-                        weeklyPaySum += overtimePay + pay;
-                    }
-                    else
-                    {
-                        double pay = rate + hours;
-                        weeklyPaySum += pay;
-                    }
+                    double pay = waged.Pay;
+                    weeklyPaySum += pay;
                 }
+
+                
                 else if(employee is Salaried salaried)
                 {
-                    double pay = salaried.Salary;
+                    double pay = salaried.Pay;
 
                     weeklyPaySum += pay;
 
                 }
             }
+            
 
 
 
             //------------CALCULATE AVERAGE PAY
             double averageWeeklyPay = weeklyPaySum / employees.Count;
-            Console.WriteLine(string.Format("Average weekly pay: {0:C2}" , averageWeeklyPay));
+            return averageWeeklyPay;
+        }
+
+
+        private static Waged FindHighestPaid(List<Employee> employees)
+        {
+            double highestWagedPay = 0;
+            Waged highestWagedEmployee = null;
+
+            foreach (Employee employee in employees)
+            {
+                if (employee is Waged waged)
+                {
+                    double pay = waged.Pay;
+
+                    if (pay > highestWagedPay)
+                    {
+                        highestWagedPay = pay;
+                        highestWagedEmployee = waged;
+                    }
+                }
+            }
+
+            return highestWagedEmployee;
+        }
+
+        private static Waged FindLowestPaid(List<Employee> employees)
+        {
+            // Rename to lowestSalariedPay
+            // Change to highest possible value
+            double lowestWagedPay = double.MaxValue;
+            // Change type to Salaried
+            // Rename to lowestSalariedEmployee
+            Waged highestWagedEmployee = null;
+
+            foreach (Employee employee in employees)
+            {
+                // Check if employee is Salaried
+                if (employee is Waged waged)
+                {
+                    double pay = waged.Pay;
+
+                    // Reverse to check if pay is less than lowestSalariedPay
+                    if (pay > highestWagedPay)
+                    {
+                        highestWagedPay = pay;
+                        highestWagedEmployee = waged;
+                    }
+                }
+            }
+
+            return highestWagedEmployee;
         }
     }
 }

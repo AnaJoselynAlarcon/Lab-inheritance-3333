@@ -44,11 +44,27 @@ namespace Lab_Inheritance
         //    this.rate = rate;
         //}
 
-        public double GetPay()
+        public override double Pay
         {
+            get
+            {
+                double rate = this.Rate;
+                double hours = this.Hours;
 
+                double pay = rate * hours;
+
+                return pay;
+            }
         }
 
+
+        public PartTime(string id, string name, double rate, double hours)
+        {
+            this.id = id;
+            this.name = name;
+            this.rate = rate;
+            this.hours = hours;
+        }
 
     }
 }

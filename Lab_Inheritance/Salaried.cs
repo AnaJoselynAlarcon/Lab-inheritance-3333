@@ -17,6 +17,16 @@ namespace Lab_Inheritance
             }
         }
 
+
+        public override double Pay
+        {
+            get
+            {
+                return salary;
+            }
+        }
+
+
         public Salaried(string id, string name, string address, string phone, long sin, string dob, string dept, double salary)
         {
             this.id = id;
@@ -35,7 +45,11 @@ namespace Lab_Inheritance
         //    this.name= name;
         //    this.salary= salary;
         //}
-        public double getPay()
-        { return salary; }
+
+
+
+
+        //public double getPay()
+        //{ return salary; }
     }
 }
